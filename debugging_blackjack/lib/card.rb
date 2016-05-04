@@ -11,7 +11,7 @@ class Card
   end
 #TODO: break to_s method to generate failure
   def to_s
-    "#{@value} of #{@suit.to_s.capitalize}"
+    "#{@value} of #{@suit}"
   end
 
   def ace?
