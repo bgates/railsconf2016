@@ -7,8 +7,7 @@ class Deck
   #TODO: remove :shuffle! from list
 
   def initialize(cards = nil)
-    @cards = cards || []
-    add_cards if @cards.empty?
+    @cards = cards || add_cards
   end
 
   def deal
@@ -18,21 +17,23 @@ class Deck
 private
   def add_cards
     [ :clubs, :diamonds, :hearts, :spades ].each do |suit|
-      add_number_cards(suit)
-      add_face_cards(suit)
+      (1..14).each do |n|
+        value = case n
+                when 11
+                  "Jack"
+                when 12
+                  "Queen"
+                when 13
+                  "King"
+                when 14
+                  "Ace"
+                else
+                  n
+                end
+        Card.new(value, suit)
+      end
     end
     shuffle!
   end
 
-  def add_number_cards(suit)
-    (2..10).each do |value|
-      @cards << Card.new(value, suit)
-    end
-  end
-
-  def add_face_cards(suit)
-    %w(Jack Queen King Ace).each do |face|
-      @cards << Card.new(face, suit)
-    end
-  end
 end
