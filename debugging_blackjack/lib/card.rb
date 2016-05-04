@@ -9,9 +9,9 @@ class Card
   def value
     numeric_value || face_card_value || ace_value
   end
-#TODO: break to_s method to generate failure
+
   def to_s
-    "#{@value} of #{@suit.to_s.capitalize}"
+    "#{@value} of #{@suit.capitalize}"
   end
 
   def ace?
