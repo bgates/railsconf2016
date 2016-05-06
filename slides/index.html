@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+<title>Slides</title>
+
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="generator" content="reveal-ck 3.3.0">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+<link rel="stylesheet" href="css/reveal.css">
+<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+<!-- Code syntax highlighting -->
+<link rel="stylesheet" href="lib/css/zenburn.css">
+
+<link rel="stylesheet" href="css/reveal-ck.css">
+
+<link rel="stylesheet" href="css/overwrite.css">
+
+<!-- Printing and PDF exports -->
+<script>
+  var link = document.createElement( 'link' );
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+  document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+
+<!--[if lt IE 9]>
+<script src="lib/js/html5shiv.js"></script>
+<![endif]-->
+
+  </head>
+
+  <body>
+    <div class="reveal">
+  <!-- Any section element inside of this container is displayed as a slide -->
+  <div class="slides">
+    <section>
+  <h1>
+    Your Code Has Bugs
+  </h1>
+  <h2>
+    And That's OK
+  </h2>
+  <h3>
+    But Here's How to Fix It
+  </h3>
+  <h4>
+    Brian Gates
+  </h4>
+</section>
+<section>
+  <img src="images/tiy_screenshot.png">
+  <p>
+    (I work here)
+  </p>
+</section>
+<section>
+  <h2>
+    Crash Course ~ Workshop
+  </h2>
+  <ul>
+    <li>
+      Varying experience levels
+    </li>
+    <li>
+      Focus on one idea
+    </li>
+  </ul>
+</section>
+<section>
+  <h1>
+    Schedule
+  </h1>
+  <p>
+    3.times do
+  </p>
+  <ul>
+    <li>
+      I show a few slides
+    </li>
+    <li>
+      You debug code
+    </li>
+    <li>
+      We talk about it
+    </li>
+  </ul>
+</section>
+<section>
+  <img src="images/wolf_wall_st_1.jpg">
+</section>
+<section>
+  <img src="images/wolf_wall_st_2.jpg">
+</section>
+<section>
+  <img src="images/wolf_wall_st_3.jpg">
+</section>
+<section>
+  <img src="images/wolf_wall_st_4.jpg">
+</section>
+<section>
+  <blockquote>"60% of coding time is spent debugging"</blockquote>
+  <p>
+    -Conrad Irwin
+  </p>
+</section>
+<section>
+  <img src="images/conrad_irwin_pry_contrib.png">
+</section>
+<section>
+  <img src="images/pry_screenshot.png">
+</section>
+<section>
+  <img src="images/byebug_screenshot.png">
+</section>
+<section>
+  <img src="images/rails_debug_screenshot.png">
+</section>
+<section>
+  <h2>
+    The Developers Who Made Those Tools Are Really Good.
+  </h2>
+</section>
+<section>
+  <img src="images/inception_meme.jpg">
+</section>
+<section>
+  <img src="images/ron_swanson_1.jpg">
+</section>
+<section>
+  <img src="images/ron_swanson_2.jpg">
+</section>
+<section>
+  <img src="images/ron_swanson_3.jpg">
+</section>
+<section>
+  <img src="images/ron_swanson_4.jpg">
+</section>
+<section>
+  <h2>
+    Your Turn
+  </h2>
+  <pre><code class="language-bash">$ git clone https://github.com/bgates/railsconf2016
+$ cd debugging_blackjack
+$ git checkout -b broken_card
+$ ruby spec/card_spec.rb</code></pre>
+</section>
+<section>
+  <h2>
+    What Did You Think?
+  </h2>
+</section>
+<section>
+  <h2>
+    Here's What I Thought
+  </h2>
+  <ul>
+    <li>
+      that was straightforward
+    </li>
+    <li>
+      bc spec said *exactly* what was wrong
+    </li>
+    <li>
+      specified *inputs and outputs*
+    </li>
+    <li>
+      spec for small section of code
+    </li>
+  </ul>
+</section>
+<section>
+  <div style="float:left;width: 45%">
+    <img src="images/sandy.jpg">
+  </div>
+  <div style="float:right;width:54%">
+    <h2>
+      Sandy Metz' Rules
+    </h2>
+    <h3>
+      (Abridged)
+    </h3>
+    <ul>
+      <li>
+        classes &lt;= 100 lines
+      </li>
+      <li>
+        methods &lt;= 5 lines
+      </li>
+      <li>
+        methods &lt;= 4 parameters
+      </li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h2>
+    Your Turn
+  </h2>
+  <h3>
+    Pair Up
+  </h3>
+  <ul>
+    <li>
+      Person whose first name is (alphabetically) 2nd, types
+    </li>
+    <li>
+      Other person says what to type
+    </li>
+    <li>
+      Typist can give suggestions when asked
+    </li>
+  </ul>
+</section>
+<section>
+  <h2>
+    Your Turn
+  </h2>
+  <pre><code class="language-bash">$ git checkout -b broken_deck
+$ ruby spec/deck_spec.rb</code></pre>
+</section>
+<section>
+  <h2>
+    How Does This Usually Feel?
+  </h2>
+  <pre><code class="language-bash">EEEE
+  1) Error:
+Deck::deal#test_0001_returns a card:
+NoMethodError: undefined method `shuffle!' for nil:NilClass
+    ~/debugging_blackjack/lib/deck.rb:36:in `add_cards'
+    ~/debugging_blackjack/lib/deck.rb:10:in `initialize'
+    spec/deck_spec.rb:5:in `new'
+    spec/deck_spec.rb:5:in `block (2 levels) in <main>'
+  2) Error:</main></code></pre>
+</section>
+<section>
+  <h2>
+    Did This Feel Different?
+  </h2>
+  <h3>
+    <em>Why?</em>
+  </h3>
+</section>
+<section>
+  <h5>
+    Normal Code Writing
+  </h5>
+  <img src="images/ego_1.png">
+</section>
+<section>
+  <h5>
+    Normal Code Writing
+  </h5>
+  <img src="images/ego_2.png">
+</section>
+<section>
+  <h5>
+    Normal Code Writing
+  </h5>
+  <img src="images/ego_3.png">
+</section>
+<section>
+  <h5>
+    This Exercise
+  </h5>
+  <img src="images/ego_4.png">
+</section>
+<section>
+  <h5>
+    Pairing Helps, Too
+  </h5>
+  <img src="images/ego_5.png">
+</section>
+<section>
+  <p>
+    Pairing also lets you speak and hear - your own thoughts as well as your pair's
+  </p>
+</section>
+<section>
+  <h2>
+    Rubber Ducking
+  </h2>
+  <a href="http://bit.ly/rubberducking_video">http://bit.ly/rubberducking_video</a>
+</section>
+<section>
+  <h2>
+    Pomodoro
+  </h2>
+  <h3>
+    Stand Up and Meet Somebody
+  </h3>
+</section>
+<section>
+  <h2>
+    Our Friend, The Error Message
+  </h2>
+</section>
+<section>
+  <h2>
+    The Error Message Doesn't Say This
+  </h2>
+  <pre><code class="language-bash">YouSuckError: You are a terrible developer. You will never
+figure this out. You're never going to be
+any good at this. Soon even your dog will give up on you.</code></pre>
+</section>
+<section>
+  <h2>
+    The Error Message Wants to Help
+  </h2>
+  <p>
+    Read it! And recognize patterns
+  </p>
+  <ul>
+    <li>
+      undefined method for nil? Probably an instance variable problem
+    </li>
+    <li>
+      ArgumentError? You used too many or too few
+    </li>
+    <li>
+      NameError? Probably a typo
+    </li>
+    <li>
+      Esoteric? Google it!
+    </li>
+  </ul>
+</section>
+<section>
+  <h2>
+    Your Turn
+  </h2>
+  <pre><code class="language-bash">$ cd ../blackjack_on_rails
+$ bundle install
+$ rails s
+# visit localhost:3000/</code></pre>
+</section>
+<section>
+  <h2>
+    A Couple of Gems
+  </h2>
+  <ul>
+    <li>
+      Quiet Assets
+    </li>
+    <li>
+      Better Errors
+    </li>
+  </ul>
+</section>
+<section>
+  <h2>
+    Why It's OK
+  </h2>
+  <ul>
+    <li>
+      There are bugs in code no matter who wrote it
+    </li>
+    <li>
+      Your Code Is Not You
+    </li>
+  </ul>
+</section>
+<section>
+  <h2>
+    How To Fix It
+  </h2>
+  <ul>
+    <li>
+      Write focused code
+    </li>
+    <li>
+      Focus on writing code
+    </li>
+    <li>
+      Use the tools
+    </li>
+    <li>
+      testing, rubber duck, our friend the error message, google, pry
+    </li>
+  </ul>
+</section>
+<section>
+  <h2>
+    There Are No Magic Bullets
+  </h2>
+  <h3>
+    You Don't Need Them
+  </h3>
+</section>
+
+  </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+  (function() {
+  function extend( a, b ) {
+    for(var i in b) {
+      a[i] = b[i];
+    }
+  }
+  var baseOptions = {
+    transition: 'none',
+
+    dependencies: [
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true },
+      { src: 'plugin/notes/notes.js', async: true }
+    ]
+  };
+  var configOptions = {"controls":true,"progress":true,"history":true,"center":true}
+  var initializeOptions = {};
+  extend(initializeOptions, baseOptions);
+  extend(initializeOptions, configOptions);
+  Reveal.initialize(initializeOptions);
+})();
+
+</script>
+
+  </body>
+</html>
